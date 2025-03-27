@@ -1,0 +1,53 @@
+/*A holiday weekend is coming up, and Hotel Bytelandia needs to find out if it has enough rooms to accommodate all potential guests. A number of guests have made reservations. Each reservation consists of an arrival time, and a departure time. The hotel management has hired you to calculate the maximum number of guests that will be at the hotel simultaneously. Note that if one guest arrives at the same time another leaves, they are never considered to be at the hotel simultaneously (see the second example).
+Input
+Input will begin with an integer T, the number of test cases. Each test case begins with an integer N, the number of guests. Two lines follow, each with exactly N positive integers. The i-th integer of the first line is the arrival time of the i-th guest, and the i-th integer of the second line is the departure time of the i-th guest (which will be strictly greater than the arrival time).
+
+Output
+For each test case, print the maximum number of guests that are simultaneously at the hotel.
+*/
+
+
+
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Codechef {
+    public static void main(String[] args) throws java.lang.Exception {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while (t-- > 0) {
+            int n = sc.nextInt();
+            int[] arr = new int[n];
+            for (int i = 0; i < n; i++) {
+                arr[i] = sc.nextInt();
+            }
+            int[] brr = new int[n];
+            for (int i = 0; i < n; i++) {
+                brr[i] = sc.nextInt();
+            }
+
+            int[][] intervals = new int[n][2];
+            for (int i = 0; i < n; i++) {
+                intervals[i][0] = arr[i];
+                intervals[i][1] = brr[i];
+            }
+            Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+            PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+            int maxOverlap = 0;
+
+            for (int[] interval : intervals) {
+                while (!minHeap.isEmpty() && minHeap.peek() <= interval[0]) {
+                    minHeap.poll();
+                }
+
+                minHeap.add(interval[1]);
+
+                maxOverlap = Math.max(maxOverlap, minHeap.size());
+            }
+
+            System.out.println(maxOverlap);
+        }
+    }
+}
