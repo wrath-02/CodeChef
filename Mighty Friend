@@ -1,0 +1,58 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Codechef
+{   
+    public static String canTomuWin(int[] arr , int k ,int n){
+        List<Integer> motu = new ArrayList<>();
+        List<Integer> tomu = new ArrayList<>();
+        int motuScore = 0;
+        int tomuScore = 0;
+        for(int i =0;i<n;i++){
+            if(i%2 ==0){
+                motu.add(arr[i]);
+                motuScore+=arr[i];
+            } 
+            else {
+                tomu.add(arr[i]);
+                tomuScore+=arr[i];
+            }
+        }
+        
+        motu.sort(Collections.reverseOrder()); // Descending order
+        Collections.sort(tomu); // Ascending order
+        int swaps = Math.min(k, Math.min(motu.size(), tomu.size()));
+        for (int i = 0; i < swaps; i++) {
+            if (motu.get(i) > tomu.get(i)) {
+             
+                motuScore -= motu.get(i);
+                motuScore += tomu.get(i);
+                tomuScore -= tomu.get(i);
+                tomuScore += motu.get(i);
+            } else {
+                break; 
+            }
+        }
+        return tomuScore > motuScore ? "YES" : "NO";
+    }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+		Scanner sc= new Scanner(System.in);
+		int t= sc.nextInt();
+		while(t-- >0){
+		    int n = sc.nextInt();
+		    int k = sc.nextInt();
+		    int[] arr = new int[n];
+		    for(int i =0;i<n;i++){
+		        arr[i]=sc.nextInt();
+		    }
+		    
+		    System.out.println(canTomuWin(arr,k,n));
+		    
+		    
+		}
+
+	}
+}
