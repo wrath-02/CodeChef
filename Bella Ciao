@@ -1,0 +1,26 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine());
+		while(t-- > 0){
+		    StringTokenizer st = new StringTokenizer(br.readLine());
+		    long D = Long.parseLong(st.nextToken());
+            long d = Long.parseLong(st.nextToken());
+            long p = Long.parseLong(st.nextToken());
+            long q = Long.parseLong(st.nextToken());
+		    long n = D / d; // number of full intervals
+            long r = D % d; // leftover days
+
+            // Total reward
+            long total = d * (n * p + (q * n * (n - 1)) / 2) + r * (p + n * q);
+            System.out.println(total);
+		}
+
+	}
+}
