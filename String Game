@@ -1,0 +1,35 @@
+import java.util.*;
+
+class Codechef {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        sc.nextLine(); 
+
+        while (t-- > 0) {
+            int n = sc.nextInt();
+            sc.nextLine(); 
+            String s = sc.nextLine();
+
+            int moves = 0;
+
+            Stack<Character> stack = new Stack<>();
+
+            for (char c : s.toCharArray()) {
+                if (!stack.isEmpty() && stack.peek() != c) {
+                    // Found a valid pair to remove
+                    stack.pop();
+                    moves++;
+                } else {
+                    stack.push(c);
+                }
+            }
+
+            if (moves % 2 == 1) {
+                System.out.println("Zlatan");
+            } else {
+                System.out.println("Ramos");
+            }
+        }
+    }
+}
