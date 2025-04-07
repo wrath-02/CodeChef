@@ -1,0 +1,34 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt(); // number of test cases
+        while (t-- > 0) {
+            int n = sc.nextInt();
+            int k = sc.nextInt();
+            List<Integer> list = new ArrayList<>();
+            for (int i = 0; i < n; i++) {
+                list.add(sc.nextInt());
+            }
+
+            Collections.sort(list); // Sort the array
+
+            boolean possible = true;
+            while (list.size() > 1) {
+                int a = list.get(0);
+                int b = list.get(1);
+
+                if (a + b <= k) {
+                    // Remove the larger of the two
+                    list.remove(1); // or list.remove(0); either works
+                } else {
+                    possible = false;
+                    break;
+                }
+            }
+
+            System.out.println(possible ? "Yes" : "No");
+        }
+    }
+}
