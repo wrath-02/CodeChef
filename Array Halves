@@ -1,0 +1,29 @@
+import java.util.*;
+
+class Codechef {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int T = sc.nextInt();
+
+        while (T-- > 0) {
+            int n = sc.nextInt();
+            int[] A = new int[2 * n];
+            for (int i = 0; i < 2 * n; i++) {
+                A[i] = sc.nextInt();
+            }
+
+            long count = 0; // how many A[i] > n seen so far
+            long ans = 0;   // total swaps needed
+
+            for (int i = 0; i < 2 * n; i++) {
+                if (A[i] > n) {
+                    count++;
+                } else {
+                    ans += count;
+                }
+            }
+
+            System.out.println(ans);
+        }
+    }
+}
