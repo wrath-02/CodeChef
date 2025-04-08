@@ -1,0 +1,58 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+        Scanner sc=new Scanner(System.in);
+        int t=sc.nextInt();
+        while(t-->0)
+        {
+            int x=sc.nextInt();
+            int y=sc.nextInt();
+            int z=sc.nextInt();
+            int ans=0;
+            if(x>0)
+            {
+                ans++;
+                x--;
+            }
+            if(y>0)
+            {
+                ans++;
+                y--;
+            }
+            if(z>0)
+            {
+                ans++;
+                z--;
+            }
+            int sum=x+y+z;
+            int a=Math.max(x,Math.max(y,z));
+            int c=Math.min(x,Math.min(y,z));
+            int b=sum-a-c;
+            if(a>0 && b>0)
+            {
+                ans++;
+                a--;
+                b--;
+            }
+            if(a>0 && c>0)
+            {
+                ans++;
+                a--;
+                c--;
+            }
+            if(b>0 && c>0)
+            {
+                ans++;
+                b--;
+                c--;
+            }
+            System.out.println(ans);
+        }
+	}
+}
