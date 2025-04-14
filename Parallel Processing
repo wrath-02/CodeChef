@@ -1,0 +1,32 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+		Scanner sc =new Scanner(System.in);
+		int t= sc.nextInt();
+		while(t-- >0){
+		    int n =sc.nextInt();
+		    long[] arr = new long[n];
+		    long sum =0, ans =0;
+		    for(int i =0;i<n;i++){
+		        arr[i]=sc.nextInt();
+		        sum+=arr[i];
+		    }
+		    long prefix =0;
+		    ans = sum;
+		    for(int i =0;i<n;i++){
+		        prefix+=arr[i];
+		        long req_time = Math.max(prefix,sum-prefix);
+		        ans= Math.min(ans,req_time);
+		    }
+		    System.out.println(ans);
+		    
+		}
+
+	}
+}
