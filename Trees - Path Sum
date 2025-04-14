@@ -1,0 +1,17 @@
+/*
+class Node {
+    int data;
+    Node left, right;
+   Node(int item)    {
+        data = item;
+        left = right = null;
+    }
+} */
+class Solution {
+    boolean hasPathSum(Node root, int K) {
+        // Code
+        if (root == null) return false;
+        if (root.left == null && root.right == null && root.data == K) return true;
+        return hasPathSum(root.left, K - root.data) || hasPathSum(root.right, K - root.data);
+    }
+}
