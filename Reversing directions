@@ -1,0 +1,40 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Codechef
+{
+    public static void main(String[] args) throws java.lang.Exception
+    {
+        // your code goes here
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        sc.nextLine();
+        while (t--> 0) {
+            int n = sc.nextInt();
+            sc.nextLine();
+            String[] arr = new String[n];
+            for (int i = 0; i < n; i++) {
+                arr[i] = sc.nextLine();
+            }
+            int index = arr[n - 1].indexOf(" ");
+            String firstWord = index != -1 ? arr[n-1].substring(0, index) : arr[n-1];
+            String rest = index != -1 ? arr[n - 1].substring(index + 1) : "";
+            System.out.println("Begin " + rest);
+
+            for (int i = n - 2; i >= 0; i--) {
+                String oldDir = firstWord;
+                index = arr[i].indexOf(" ");
+                firstWord = index != -1 ? arr[i].substring(0, index) : arr[i];
+                rest = index != -1 ? arr[i].substring(index + 1) : "";
+                String newDir = "";
+                if (oldDir.equals("Right")) newDir = "Left";
+                else newDir = "Right";
+                System.out.println(newDir + " " + rest);
+            }
+            System.out.println();
+        }
+        
+
+    }
+}
