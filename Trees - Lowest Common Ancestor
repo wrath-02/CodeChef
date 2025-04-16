@@ -1,0 +1,10 @@
+class Solution {
+    int lowestCommonAncestor(Node root, int A, int B) {
+        if (root == null) return -1;
+        if (root.data == A || root.data == B) return root.data;
+        int left = lowestCommonAncestor(root.left, A, B);
+        int right = lowestCommonAncestor(root.right, A, B);
+        if (left != -1 && right != -1) return root.data;
+        return left != -1 ? left : right;
+    }
+}
