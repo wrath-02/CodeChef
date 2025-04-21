@@ -1,0 +1,54 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+		Scanner sc = new Scanner(System.in);
+		int t =sc.nextInt();
+		while(t-- >0){
+		    int n = sc.nextInt();
+		    int k = sc.nextInt();
+		    int[] dish = new int[n];
+		    int[] time = new int[n];
+		    for(int i =0;i<n;i++){
+		        dish[i] = sc.nextInt();
+		    }
+		    for(int i =0;i<n;i++){
+		        time[i] = sc.nextInt();
+		    }
+		    
+		    HashMap<Integer,Integer> mp = new HashMap<>();
+		    for(int i = 0 ;i<n;i++){
+		        if(mp.containsKey(dish[i])){
+		            int currVal = mp.get(dish[i]);
+		            if(currVal>time[i]){
+		                mp.put(dish[i],time[i]);
+		            }
+		        }
+		        else mp.put(dish[i],time[i]);
+		    }
+		    
+		    PriorityQueue<Integer> pq = new PriorityQueue<>();
+		    for(int num : mp.keySet()){
+		        int val = mp.get(num);
+		        pq.add(val);
+		    }
+		    long ans = 0;
+		    if(pq.size()<k){
+		        System.out.println(-1);
+		        continue;
+		    }
+		    
+		    while(k>0){
+		        ans += pq.remove();
+		        k--;
+		    }
+		    System.out.println(ans);
+		}
+
+	}
+}
