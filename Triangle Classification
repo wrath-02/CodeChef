@@ -1,0 +1,59 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Codechef {
+    public static void main(String[] args) throws java.lang.Exception {
+        Scanner sc = new Scanner(System.in);
+        int sub_task = sc.nextInt();
+        int t = sc.nextInt();
+        final double EPS = 1e-6;
+
+        while (t-- > 0) {
+            int x1 = sc.nextInt();
+            int y1 = sc.nextInt();
+            int x2 = sc.nextInt();
+            int y2 = sc.nextInt();
+            int x3 = sc.nextInt();
+            int y3 = sc.nextInt();
+
+            double s1 = Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+            double s2 = Math.sqrt(Math.pow(x2 - x3, 2) + Math.pow(y2 - y3, 2));
+            double s3 = Math.sqrt(Math.pow(x1 - x3, 2) + Math.pow(y1 - y3, 2));
+            boolean isIsosceles = (Math.abs(s1 - s2) < EPS || Math.abs(s2 - s3) < EPS || Math.abs(s1 - s3) < EPS);
+
+            if (sub_task == 1) {
+                if (!isIsosceles) {
+                    System.out.println("Scalene triangle");
+                } else {
+                    System.out.println("Isosceles triangle");
+                }
+            } else {
+                double[] sides = {s1, s2, s3};
+                Arrays.sort(sides);
+                double a = sides[0];
+                double b = sides[1];
+                double c = sides[2];
+
+                double a2 = a * a;
+                double b2 = b * b;
+                double c2 = c * c;
+
+                if (isIsosceles && c2 < a2 + b2 - EPS)
+                    System.out.println("Isosceles acute triangle");
+                else if (!isIsosceles && c2 < a2 + b2 - EPS)
+                    System.out.println("Scalene acute triangle");
+                else if (isIsosceles && Math.abs(c2 - (a2 + b2)) < EPS)
+                    System.out.println("Isosceles right triangle");
+                else if (!isIsosceles && Math.abs(c2 - (a2 + b2)) < EPS)
+                    System.out.println("Scalene right triangle");
+                else if (isIsosceles && c2 > a2 + b2 + EPS)
+                    System.out.println("Isosceles obtuse triangle");
+                else
+                    System.out.println("Scalene obtuse triangle");
+            }
+        }
+
+        sc.close();
+    }
+}
