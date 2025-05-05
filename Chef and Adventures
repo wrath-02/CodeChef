@@ -1,0 +1,30 @@
+import java.util.*;
+
+class Codechef {
+    public static void main(String[] args) throws java.lang.Exception {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+
+        while (t--> 0) {
+            int n = sc.nextInt();
+            int m = sc.nextInt();
+            int x = sc.nextInt();
+            int y = sc.nextInt();
+
+            // Directly check if (n-1) divisible by x and (m-1) by y
+            boolean canReachDirect = (n - 1) % x == 0 && (m - 1) % y == 0;
+
+            // Check if one move back from (1, 1) makes it possible
+            boolean canReachViaShift = (n - 2) >= 0 && (m - 2) >= 0 &&
+                (n - 2) % x == 0 && (m - 2) % y == 0;
+
+            if (canReachDirect || canReachViaShift) {
+                System.out.println("Chefirnemo");
+            } else {
+                System.out.println("Pofik");
+            }
+        }
+
+        sc.close();
+    }
+}
