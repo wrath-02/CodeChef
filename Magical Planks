@@ -1,0 +1,34 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Codechef {
+    public static void main(String[] args) throws java.lang.Exception {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        sc.nextLine(); // Consume the newline after the first integer
+
+        while (t--> 0) {
+            int n = sc.nextInt();
+            sc.nextLine(); // Consume newline after reading n
+            String s = sc.nextLine();
+
+            int countB = 0;
+            int countW = 0;
+
+            char prev = ' ';
+            for (int i = 0; i < n; i++) {
+                char curr = s.charAt(i);
+                if (curr != prev) {
+                    if (curr == 'B') countB++;
+                    else countW++;
+                    prev = curr;
+                }
+            }
+
+            System.out.println(Math.min(countB, countW));
+        }
+
+        sc.close();
+    }
+}
