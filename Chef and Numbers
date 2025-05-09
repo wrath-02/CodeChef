@@ -1,0 +1,31 @@
+import java.util.*;
+
+public class Main {
+    // Function to compute sum of digits
+    public static int sumDigits(int x) {
+        int sum = 0;
+        while (x > 0) {
+            sum += x % 10;
+            x /= 10;
+        }
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int count = 0;
+
+        // Try X from max(1, N - 1000) to N
+        for (int x = Math.max(1, N - 1000); x <= N; x++) {
+            int s1 = sumDigits(x);
+            int s2 = sumDigits(s1);
+            if (x + s1 + s2 == N) {
+                count++;
+            }
+        }
+
+        System.out.println(count);
+        sc.close();
+    }
+}
