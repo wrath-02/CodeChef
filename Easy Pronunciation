@@ -1,0 +1,46 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Codechef
+{   public static boolean isVowel(char ch){
+        if(ch =='a' || ch =='e' || ch =='i' || ch == 'o' || ch =='u') return true;
+        return false;
+    }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+		Scanner sc = new Scanner(System.in);
+		int t = sc.nextInt();
+		while(t-- >0){
+		    int n = sc.nextInt();
+		    String s = sc.next();
+		    
+		    if(n < 4){
+		        System.out.println("Yes");
+		        continue;
+		    }
+		    
+		    int cntCons = 0;
+		    boolean flag = false;
+		    
+		    for(int i = 0 ; i < n ; i++){
+		        char ch = s.charAt(i);
+		        
+		        if(!isVowel(ch)) cntCons++;
+		        else cntCons = 0;
+		        
+		        if(cntCons >= 4){
+		            flag = true;
+		            break;
+		        }
+		    }
+		    
+		    if(!flag) System.out.println("Yes");
+		    else System.out.println("No");
+		    
+		}
+		
+
+	}
+}
